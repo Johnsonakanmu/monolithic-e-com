@@ -1,0 +1,39 @@
+
+spring:
+  application:
+    name: ecom-application
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecomdb
+    username: johnson
+    password: johnson.123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans, health
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: E-Commerce Project
+    description: App built by me
+    version: 1.0.0
+
+

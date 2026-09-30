@@ -1,0 +1,17 @@
+package com.johnsoncodelove.ecomapp.respository;
+
+import com.johnsoncodelove.ecomapp.dto.ProductResponse;
+import com.johnsoncodelove.ecomapp.model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    List<Product> findByActiveTrue();
+
+    @Query("SELECT p FROM Product p WHERE p.active AND p.stockQuantity > 0 AND LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<Product> searchProduct(@Param("keyword") String keyword);
+}
